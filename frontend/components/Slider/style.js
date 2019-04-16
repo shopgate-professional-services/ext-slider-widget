@@ -1,6 +1,8 @@
 import { css } from 'glamor';
 import { isIOSTheme } from '@shopgate-ps/pwa-extension-kit/env/helpers';
 
+const isIOS = isIOSTheme();
+
 const item = css({
   width: '100%',
   heigth: 'auto',
@@ -23,10 +25,10 @@ const headlineContainer = css({
  * @returns {string}
  */
 const headline = css({
-  fontSize: isIOSTheme() ? 22 : 18,
+  fontSize: isIOS ? 22 : 18,
   width: '100%',
-  margin: isIOSTheme() ? '8px 16px' : '8px 8px 8px 12px',
-  textAlign: isIOSTheme() ? 'left' : 'center',
+  margin: isIOS ? '8px 16px' : '8px 8px 8px 12px',
+  textAlign: isIOS ? 'left' : 'center',
   padding: 0,
 }).toString();
 
