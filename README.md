@@ -1,4 +1,4 @@
-# ext-slider-widget
+# Shopgate Connect - Extension Slider-Widget
 
 This extension provides a image slider widget.
 
@@ -14,6 +14,8 @@ If you want to use the image slider widget, you can create a HTML widget with fo
   "type": "@shopgate/ext-slider-widget/SliderWidget",
   "settings": {
     "headline": "Some Headline",
+    "autoplay": true,
+    "loop": true,
     "slides": [
       [
         {
@@ -33,6 +35,10 @@ If you want to use the image slider widget, you can create a HTML widget with fo
       ],
       [
         "image-url.jpeg"
+      ],
+      [
+        "image-url.jpeg",
+        "image-url.jpeg"
       ]
     ]
   }
@@ -43,6 +49,8 @@ If you want to use the image slider widget, you can create a HTML widget with fo
 Settings:
 
 - headline (optional): Define a headline.
+- autoplay (optional): true / false to autoplay the slider.
+- loop (optional): true / false to loop the slider
 - slides: Provide an array per slide. The array can contain any amount of items.
 
 Use the "img" and "link" tag to define the image url and an url to which the image should lead on click.
