@@ -34,6 +34,10 @@
     "react-transform-catch-errors": "^1.0.2",
     "redbox-react": "^1.5.0"
   },
+  "peerDependencies": {
+    "@shopgate/pwa-common": "^6.1.0",
+    "@shopgate/pwa-common-commerce": "^6.1.0"
+  },
   "dependencies": {
     "@shopgate-ps/pwa-extension-kit": "^0.6.0"
   }
