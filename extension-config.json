@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "id": "@shopgate/ext-slider-widget",
+  "components": [
+    {
+      "id": "SliderWidget",
+      "path": "frontend/components/Slider/index.jsx",
+      "type": "widgets",
+      "description": "Slider widget"
+    }
+  ],
+  "configuration": {
+  }
+}
