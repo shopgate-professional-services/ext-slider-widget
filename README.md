@@ -8,7 +8,7 @@ The widget is configurable in regards of amount of slides and items on the slide
 
 If you want to use the image slider widget, you can create a HTML widget with following content:
 
-```json
+```html
 <!--Widget
 {
   "type": "@shopgate/ext-slider-widget/SliderWidget",

@@ -27,7 +27,7 @@ const createSlideItem = (slideItem, index) => {
       href={slideItem.link}
       key={slideItem.link + index}
     >
-      <img className={styles.item} key={`${slideItem.img}-${index}`} alt="" src={slideItem.img} />
+      <img className={styles.item} alt="" src={slideItem.img} />
     </Link>
   );
 };
