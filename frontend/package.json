@@ -1,5 +1,5 @@
 {
-  "name": "@shopgate/ext-slider-widget",
+  "name": "@shopgate-project/ext-slider-widget",
   "version": "1.0.0",
   "description": "Creates a Slider Widget",
   "license": "Apache-2.0",

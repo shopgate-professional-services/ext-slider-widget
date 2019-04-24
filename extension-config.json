@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "id": "@shopgate/ext-slider-widget",
+  "id": "@shopgate-project/ext-slider-widget",
   "components": [
     {
       "id": "SliderWidget",
