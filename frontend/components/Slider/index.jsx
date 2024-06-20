@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from '@shopgate/pwa-common/components/Link';
-import Slider from '@shopgate/pwa-common/components/Slider';
+import { Swiper } from '@shopgate/engage/components';
+import { isIos, isAndroid } from '@shopgate/pwa-common/selectors/client';
 import styles from './style';
 
 /**
@@ -11,22 +12,30 @@ import styles from './style';
 * @return {JSX} The Slide Item.
 */
 const createSlideItem = (slideItem, index) => {
-  if (typeof slideItem.img !== 'string') {
+  let oslink = '';
+
+  if (isIos && slideItem.iOSLink) {
+    oslink = slideItem.iOSLink;
+  } else if (isAndroid && slideItem.androidLink) {
+    oslink = slideItem.androidLink;
+  }
+
+  if (!slideItem.img) {
     return (
       <img className={styles.item} key={`${slideItem}-${index}`} alt="" src={slideItem} />
     );
   }
-  if (typeof slideItem.link !== 'string' || slideItem.link.length === 0) {
+
+  const link = oslink || slideItem.link;
+
+  if (!link) {
     return (
       <img className={styles.item} key={`${slideItem.img}-${index}`} alt="" src={slideItem.img} />
     );
   }
 
   return (
-    <Link
-      href={slideItem.link}
-      key={slideItem.link + index}
-    >
+    <Link href={link} key={link + index}>
       <img className={styles.item} alt="" src={slideItem.img} />
     </Link>
   );
@@ -39,13 +48,11 @@ const createSlideItem = (slideItem, index) => {
 * @return {JSX} The rendered Slide.
 */
 const createSlide = (slide, index) => (
-  <Slider.Item key={index}>
+  <Swiper.Item key={index}>
     <div className={styles.sliderWrapper}>
-      {slide.map((
-        (slideItem, slideItemIndex) => createSlideItem(slideItem, slideItemIndex)
-      ))}
+      {createSlideItem(slide, index)}
     </div>
-  </Slider.Item>
+  </Swiper.Item>
 );
 
 /**
@@ -58,26 +65,23 @@ const SliderWidget = (props) => {
     return null;
   }
 
-  const mergedSettings = {
-    slides: null,
-    autoplay: true,
-    loop: true,
-    ...props.settings,
-  };
+  const { settings } = props;
 
-  const slides = mergedSettings.slides.map((
+  const slides = settings.slides.map((
     (slide, slideIndex) => createSlide(slide, slideIndex)
   ));
 
-  if (!mergedSettings.headline || mergedSettings.headline === '') {
+  if (!settings.headline || settings.headline === '') {
     return (
       <div>
-        <Slider
-          autoPlay={mergedSettings.autoplay}
-          loop={mergedSettings.loop}
+        <Swiper
+          autoplay={settings.autoplay}
+          loop={settings.loop}
+          slidesPerView={settings.slidesPerView}
+          indicators={settings.indicators}
         >
           {slides}
-        </Slider>
+        </Swiper>
       </div>
     );
   }
@@ -85,14 +89,16 @@ const SliderWidget = (props) => {
   return (
     <div>
       <div className={styles.headlineContainer}>
-        <h3 className={styles.headline}>{mergedSettings.headline}</h3>
+        <h3 className={styles.headline}>{settings.headline}</h3>
       </div>
-      <Slider
-        autoPlay={mergedSettings.autoplay}
-        loop={mergedSettings.loop}
+      <Swiper
+        autoPlay={settings.autoplay}
+        loop={settings.loop}
+        slidesPerView={settings.slidesPerView}
+        indicators={settings.indicators}
       >
         {slides}
-      </Slider>
+      </Swiper>
     </div>
   );
 };
@@ -103,6 +109,8 @@ SliderWidget.propTypes = {
     headline: PropTypes.string,
     autoplay: PropTypes.bool,
     loop: PropTypes.bool,
+    slidesPerView: PropTypes.number,
+    indicators: PropTypes.bool,
   }),
 };
 
@@ -111,6 +119,8 @@ SliderWidget.defaultProps = {
     slides: null,
     autoplay: true,
     loop: true,
+    slidesPerView: 1,
+    indicators: false,
   },
 };
 
