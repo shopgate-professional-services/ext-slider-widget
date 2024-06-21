@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from '@shopgate/pwa-common/components/Link';
 import { Swiper } from '@shopgate/engage/components';
-import { isIos, isAndroid } from '@shopgate/pwa-common/selectors/client';
+import { themeName } from '@shopgate/pwa-common/helpers/config';
 import styles from './style';
 
 /**
@@ -12,21 +12,14 @@ import styles from './style';
 * @return {JSX} The Slide Item.
 */
 const createSlideItem = (slideItem, index) => {
-  let oslink = '';
-
-  if (isIos && slideItem.iOSLink) {
-    oslink = slideItem.iOSLink;
-  } else if (isAndroid && slideItem.androidLink) {
-    oslink = slideItem.androidLink;
-  }
+  const isIOS = themeName.includes('ios');
+  const link = (isIOS ? slideItem.iOSLink : slideItem.androidLink) || slideItem.link;
 
   if (!slideItem.img) {
     return (
       <img className={styles.item} key={`${slideItem}-${index}`} alt="" src={slideItem} />
     );
   }
-
-  const link = oslink || slideItem.link;
 
   if (!link) {
     return (
@@ -64,7 +57,7 @@ const SliderWidget = (props) => {
   if (!props.settings.slides) {
     return null;
   }
-
+  console.warn('!!! props', props);
   const { settings } = props;
 
   const slides = settings.slides.map((

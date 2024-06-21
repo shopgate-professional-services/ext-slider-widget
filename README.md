@@ -11,38 +11,41 @@ If you want to use the image slider widget, you can create a HTML widget with fo
 ```html
 <!--Widget
 {
-  "type": "@shopgate/ext-slider-widget/SliderWidget",
-  "settings": {
-    "headline": "Some Headline",
-    "autoplay": true,
-    "loop": false,
-    "slidesPerView": 2.3,
-    "indicators": false,
-    "slides":[
-      {
-        "img": "image-url-1.jpeg",
-        "link": "url"
-      },
-      {
-        "img": "image-url-2.jpeg",
-        "link": "",
-        "iOSLink": "url-ios",
-        "androidLink": "url-android"
-      },
-      {
-        "img": "image-url-3.jpeg",
-        "link": "url-will-not-be-used",
-        "iOSLink": "url-ios",
-        "androidLink": "url-android"
-      },
-      {
-        "img": "image-url-4.jpeg"
-      }
+  "type":"@shopgate-project/slider-widget/SliderWidget",
+   "settings":{
+      "headline": "Some Headline",
+      "autoplay": true,
+      "loop": false,
+      "slidesPerView": 2.3,
+      "indicators": false,
+      "slides":[
+        {
+          "img": "image-url-1.jpeg",
+          "link": "url"
+        },
+        {
+          "img": "image-url-2.jpeg",
+          "link": "url"
+        },
+        {
+          "img": "image-url-3.jpeg",
+          "iOSLink": "url-ios",
+          "androidLink": "url-android"
+        },
+        {
+          "img": "image-url-4.jpeg",
+          "link": "url-will-be-ignored",
+          "iOSLink": "url-ios",
+          "androidLink": "url-android"
+        },
+        {
+          "img": "image-url-5.jpeg"
+        }
     ]
   }
-}
--->
 ```
+
+
 
 You can also specify only an array of image URLs if you only want to display images.
 
