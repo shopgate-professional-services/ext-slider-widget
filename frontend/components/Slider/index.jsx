@@ -57,7 +57,7 @@ const SliderWidget = (props) => {
   if (!props.settings.slides) {
     return null;
   }
-  console.warn('!!! props', props);
+
   const { settings } = props;
 
   const slides = settings.slides.map((
