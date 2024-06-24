@@ -12,14 +12,15 @@ import styles from './style';
 * @return {JSX} The Slide Item.
 */
 const createSlideItem = (slideItem, index) => {
-  const isIOS = themeName.includes('ios');
-  const link = (isIOS ? slideItem.iOSLink : slideItem.androidLink) || slideItem.link;
-
-  if (!slideItem.img) {
+  // Array with strings only
+  if (typeof slideItem === 'string') {
     return (
       <img className={styles.item} key={`${slideItem}-${index}`} alt="" src={slideItem} />
     );
   }
+
+  const isIOS = themeName.includes('ios');
+  const link = (isIOS ? slideItem.iOSLink : slideItem.androidLink) || slideItem.link;
 
   if (!link) {
     return (
@@ -60,7 +61,10 @@ const SliderWidget = (props) => {
 
   const { settings } = props;
 
-  const slides = settings.slides.map((
+  // filter incorrect slider configs
+  const filteredSlides = settings.slides.filter(slide => typeof slide === 'string' || slide.hasOwnProperty('img'));
+
+  const slides = filteredSlides.map((
     (slide, slideIndex) => createSlide(slide, slideIndex)
   ));
 
