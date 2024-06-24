@@ -1,7 +1,7 @@
 import { css } from 'glamor';
-import { isIOSTheme } from '@shopgate-ps/pwa-extension-kit/env/helpers';
+import { themeName } from '@shopgate/pwa-common/helpers/config';
 
-const isIOS = isIOSTheme();
+const isIOS = themeName.includes('ios');
 
 const item = css({
   width: '100%',
